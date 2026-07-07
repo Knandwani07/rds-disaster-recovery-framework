@@ -100,7 +100,7 @@ Restore Amazon RDS
 ## 📂 Project Structure
 
 ```text
-aws-rds-disaster-recovery/
+rds-disaster-recovery-framework/
 │
 ├── lambda/
 │   └── snapshot-replicator.py
