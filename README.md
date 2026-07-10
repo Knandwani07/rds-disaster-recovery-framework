@@ -47,23 +47,26 @@ The solution creates encrypted database snapshots, replicates them to a secondar
 aws-disaster-recovery-automation-framework/
 │
 ├── architecture/
-│   └── architecture-overview.md
+│   ├── architecture-overview.md
+│   └── README.md
 │
 ├── docs/
 │   ├── execution-workflow.md
 │   ├── deployment-guide.md
-│   └── cleanup-guide.md
+│   ├── cleanup-guide.md
+│   └── README.md
 │
 ├── images/
+│   ├── README.md
 │   ├── cloudwatch-dashboard.md
 │   ├── eventbridge-rule.md
 │   ├── iam-role.md
 │   ├── kms-key.md
 │   ├── lambda-function.md
 │   ├── primary-rds-database.md
-│   ├── sns-failover-notification.md
-│   ├── sns-replication-notification.md
 │   ├── sns-topic.md
+│   ├── sns-replication-notification.md
+│   ├── sns-failover-notification.md
 │   └── ssm-runbook-workflow.md
 │
 ├── lambda/
@@ -78,7 +81,6 @@ aws-disaster-recovery-automation-framework/
 ├── LICENSE
 └── README.md
 ```
-
 ---
 
 ## 📄 File Description
