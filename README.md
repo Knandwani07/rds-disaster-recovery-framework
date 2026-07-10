@@ -1,193 +1,139 @@
 # 🚨 AWS RDS Disaster Recovery Automation Framework
 
-> **An event-driven, cross-region disaster recovery solution for Amazon RDS using AWS Lambda, EventBridge, KMS, SNS, CloudWatch, and AWS Systems Manager Automation.**
+## 📖 About this Project
+
+The **AWS Disaster Recovery Automation Framework** is a cloud-based disaster recovery solution that automates backup, cross-region replication, monitoring, and failover for Amazon RDS MySQL databases. Built using an event-driven architecture, the project leverages AWS services such as Lambda, EventBridge, KMS, SNS, CloudWatch, and Systems Manager Automation to reduce manual intervention and improve recovery readiness.
+
+The solution creates encrypted database snapshots, replicates them to a secondary AWS Region, continuously monitors the replication workflow, and enables automated database restoration during disaster recovery scenarios. By automating critical recovery operations, the framework minimizes Recovery Time Objective (RTO), improves operational reliability, and helps organizations maintain business continuity.
 
 ---
 
-## 📌 Overview
+## 🎯 Project Objectives
 
-Disaster recovery is a critical part of any cloud architecture. While automated backups help protect data, recovering quickly from a regional outage often requires additional automation.
-
-This project demonstrates how to build a fully automated disaster recovery workflow for an Amazon RDS MySQL database. It uses AWS services to create scheduled snapshots, replicate them securely to another AWS Region, monitor the entire workflow, and restore the database on demand during a disaster.
-
-The solution minimizes manual intervention, improves recovery time, and provides continuous visibility into the disaster recovery process.
-
----
-
-## ✨ Features
-
-- Automated daily RDS snapshot creation
-- Cross-region encrypted snapshot replication
-- Customer-managed AWS KMS encryption
-- Event-driven automation with Amazon EventBridge
-- Email notifications using Amazon SNS
-- CloudWatch dashboard and alarms
-- Automated database recovery using SSM Automation
-- Disaster recovery testing workflow
-- Complete AWS resource cleanup guide
+- Automate Amazon RDS snapshot creation.
+- Replicate encrypted snapshots across AWS Regions.
+- Secure backups using AWS Key Management Service (KMS).
+- Schedule daily replication using Amazon EventBridge.
+- Monitor the disaster recovery workflow with Amazon CloudWatch.
+- Send automated notifications using Amazon SNS.
+- Enable one-click database restoration using AWS Systems Manager Automation.
+- Reduce manual effort during disaster recovery operations.
+- Improve disaster recovery readiness through automation and monitoring.
+- Demonstrate AWS best practices for backup, encryption, monitoring, and recovery.
 
 ---
 
-## 🏗️ Architecture
+## 🛠️ Technologies Used
 
-The solution consists of two AWS Regions.
-
-### Primary Region (us-east-1)
-
-- Amazon VPC
-- Amazon RDS MySQL
-- AWS Lambda
-- Amazon EventBridge
-- Amazon SNS
-- Amazon CloudWatch
-
-### Disaster Recovery Region (us-west-2)
-
-- Encrypted RDS Snapshots
-- AWS KMS
-- AWS Systems Manager Automation
-- Restored Amazon RDS Instance
-- Amazon SNS
-
----
-
-## 🔄 Workflow
-
-```text
-Amazon RDS
-      │
-      ▼
-Lambda creates snapshot
-      │
-      ▼
-Snapshot encrypted using KMS
-      │
-      ▼
-Cross-region snapshot replication
-      │
-      ▼
-SNS notification
-      │
-      ▼
-CloudWatch monitoring
-      │
-      ▼
-Disaster occurs
-      │
-      ▼
-SSM Automation Runbook
-      │
-      ▼
-Restore Amazon RDS
-```
-
----
-
-## 🛠️ AWS Services Used
-
-- Amazon VPC
-- Amazon RDS
-- AWS Lambda
-- Amazon EventBridge
-- AWS KMS
-- Amazon SNS
-- Amazon CloudWatch
-- AWS IAM
-- AWS Systems Manager Automation
+| Service | Purpose |
+|----------|---------|
+| Amazon VPC | Network isolation |
+| Amazon RDS (MySQL) | Primary database |
+| AWS Lambda | Snapshot automation |
+| Amazon EventBridge | Scheduled execution |
+| AWS KMS | Snapshot encryption |
+| Amazon SNS | Email notifications |
+| Amazon CloudWatch | Monitoring & alarms |
+| AWS IAM | Access management |
+| AWS Systems Manager Automation | Automated failover |
+| Python 3.12 | Lambda runtime |
+| JSON | SSM Automation document |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-rds-disaster-recovery-framework/
-│
-├── lambda/
-│   └── snapshot-replicator.py
-│
-├── ssm/
-│   └── failover-runbook.json
-│
-├── diagrams/
-│   └── architecture.png
-│
-├── screenshots/
+aws-disaster-recovery-automation-framework/
+
 │
 ├── README.md
+├── architecture/
+│   └── architecture-diagram.png
+│
+├── lambda/
+│   └── dr-snapshot-replicator.py
+│
+├── ssm/
+│   └── dr-failover-runbook.json
+│
+├── images/
+│   ├── dashboard.png
+│   ├── lambda.png
+│   ├── sns-email.png
+│   ├── replication.png
+│   └── failover.png
+│
+└── documentation/
+    └── execution-workflow.md
 ```
 
 ---
 
-## 🎯 Learning Objectives
+## 📄 File Description
 
-This project demonstrates how to:
-
-- Build a disaster recovery architecture on AWS
-- Automate RDS snapshot replication
-- Encrypt snapshots using AWS KMS
-- Schedule automation with EventBridge
-- Monitor infrastructure using CloudWatch
-- Send alerts using SNS
-- Perform automated database recovery
-- Validate disaster recovery procedures
+| File/Folder | Description |
+|-------------|-------------|
+| `README.md` | Complete project documentation and deployment guide |
+| `architecture/` | Architecture diagrams used throughout the project |
+| `lambda/` | Lambda function for automated snapshot creation and cross-region replication |
+| `ssm/` | Systems Manager Automation runbook for disaster recovery |
+| `images/` | Screenshots demonstrating deployment, monitoring, and failover |
+| `documentation/` | Detailed execution workflow and implementation guide |
 
 ---
 
-## 🚀 Technologies
+## 📋 Prerequisites
 
-- Python 3.12
-- AWS Lambda
-- Amazon RDS
-- AWS Systems Manager
-- Amazon EventBridge
-- Amazon CloudWatch
-- Amazon SNS
-- AWS IAM
-- AWS KMS
+Before deploying this project, ensure you have:
 
----
-
-## 📈 Future Enhancements
-
-- Terraform deployment
-- AWS Backup integration
-- Aurora Global Database
-- Route 53 automatic failover
-- Step Functions orchestration
-- Slack and Microsoft Teams notifications
-- Automated DR testing pipeline
+- AWS Account
+- Basic knowledge of AWS services
+- Familiarity with Amazon RDS
+- Understanding of VPC networking
+- Basic Python knowledge
+- Knowledge of IAM Roles and Policies
+- Basic understanding of JSON
+- Access to two AWS Regions:
+  - **us-east-1 (Primary)**
+  - **us-west-2 (Disaster Recovery)**
+- Verified email address for Amazon SNS notifications
+- AWS Management Console access with sufficient IAM permissions
 
 ---
 
-## 📚 Documentation
+## 📚 Concepts Covered
 
-The repository includes:
+This project demonstrates practical implementation of the following AWS concepts:
 
-- Complete setup guide
-- Step-by-step implementation
-- Architecture explanation
-- Disaster recovery testing
-- Cleanup guide
-
----
-
-## ⭐ Key Takeaways
-
-- Automating disaster recovery reduces manual effort.
-- Cross-region replication improves business continuity.
-- Monitoring and alerting increase operational visibility.
-- Infrastructure automation improves reliability and consistency.
+- Disaster Recovery (DR)
+- Cross-Region Backup Strategy
+- Recovery Time Objective (RTO)
+- Recovery Point Objective (RPO)
+- Event-Driven Architecture
+- AWS Lambda Automation
+- EventBridge Scheduling
+- Systems Manager Automation Runbooks
+- Secure Database Deployment
+- Infrastructure Monitoring
+- Business Continuity Planning
+- AWS Security Best Practices
 
 ---
 
-## 🤝 Connect With Me
+## 🤝 Let's Connect
 
-- 💼 LinkedIn: https://www.linkedin.com/in/khushi-nandwani/
-- 💻 GitHub: https://github.com/Knandwani07
-- ✍️ Dev Community: https://dev.to/khushi_nandwani07
-- 📝 Medium: https://medium.com/@khushinandwanii
-- 🌐 Portfolio: https://main.d1n4wt6uo5bfx6.amplifyapp.com/
+- 💼 **LinkedIn:** https://www.linkedin.com/in/khushi-nandwani/
+- 💻 **GitHub:** https://github.com/Knandwani07
+- ✍️ **Dev Community:** https://dev.to/khushi_nandwani07
+- 📝 **Medium:** https://medium.com/@khushinandwanii
+- 🌐 **Portfolio:** https://main.d1n4wt6uo5bfx6.amplifyapp.com/
 
 ---
 
-## ⭐ If you found this project helpful, consider giving it a star!
+⭐ **If you found this project helpful, consider giving it a star!**
+
+
+---
+
+sharing cloud and DevOps projects with the community!
