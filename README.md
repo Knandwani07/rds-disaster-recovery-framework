@@ -45,43 +45,54 @@ The solution creates encrypted database snapshots, replicates them to a secondar
 
 ```text
 aws-disaster-recovery-automation-framework/
-
 │
-├── README.md
 ├── architecture/
-│   └── architecture-diagram.png
+│   └── architecture-overview.md
 │
-├── lambda/
-│   └── dr-snapshot-replicator.py
-│
-├── ssm/
-│   └── dr-failover-runbook.json
+├── docs/
+│   ├── execution-workflow.md
+│   ├── deployment-guide.md
+│   └── cleanup-guide.md
 │
 ├── images/
-│   ├── dashboard.png
-│   ├── lambda.png
-│   ├── sns-email.png
-│   ├── replication.png
-│   └── failover.png
+│   ├── cloudwatch-dashboard.md
+│   ├── eventbridge-rule.md
+│   ├── iam-role.md
+│   ├── kms-key.md
+│   ├── lambda-function.md
+│   ├── primary-rds-database.md
+│   ├── sns-failover-notification.md
+│   ├── sns-replication-notification.md
+│   ├── sns-topic.md
+│   └── ssm-runbook-workflow.md
 │
-└── documentation/
-    └── execution-workflow.md
+├── lambda/
+│   ├── dr-snapshot-replicator.py
+│   └── README.md
+│
+├── ssm/
+│   ├── dr-failover-runbook.json
+│   └── README.md
+│
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ---
 
 ## 📄 File Description
 
-| File/Folder | Description |
-|-------------|-------------|
-| `README.md` | Complete project documentation and deployment guide |
-| `architecture/` | Architecture diagrams used throughout the project |
-| `lambda/` | Lambda function for automated snapshot creation and cross-region replication |
-| `ssm/` | Systems Manager Automation runbook for disaster recovery |
-| `images/` | Screenshots demonstrating deployment, monitoring, and failover |
-| `documentation/` | Detailed execution workflow and implementation guide |
-
----
+| File / Folder | Description |
+|---------------|-------------|
+| **architecture/** | Contains the project architecture overview and design documentation. |
+| **docs/** | Includes deployment, execution workflow, and cleanup documentation for the project. |
+| **images/** | Contains screenshots of AWS resources and services with explanations demonstrating each stage of the disaster recovery workflow. |
+| **lambda/** | Contains the AWS Lambda source code and documentation for automated snapshot replication. |
+| **ssm/** | Contains the AWS Systems Manager Automation runbook and its documentation for automated database failover. |
+| **.gitignore** | Specifies files and directories that Git should ignore. |
+| **LICENSE** | Contains the MIT License governing the use and distribution of this project. |
+| **README.md** | Main project documentation, including architecture, setup, implementation, and usage instructions. |
 
 ## 📋 Prerequisites
 
