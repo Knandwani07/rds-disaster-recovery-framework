@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Bytecode
+*.pyc
+
+# AWS SAM / Serverless (if added later)
+.aws-sam/
+
+# Terraform (future use)
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
