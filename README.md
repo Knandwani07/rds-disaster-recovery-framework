@@ -148,5 +148,3 @@ This project demonstrates practical implementation of the following AWS concepts
 
 
 ---
-
-sharing cloud and DevOps projects with the community!
