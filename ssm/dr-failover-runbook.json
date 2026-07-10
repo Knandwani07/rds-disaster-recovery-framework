@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "0.3",
+  "description": "One-click DR failover: Restore RDS from latest snapshot in us-west-2",
+  "parameters": {
+    "SnapshotIdentifier": {
+      "type": "String",
+      "description": "The DR snapshot identifier to restore from (e.g. dr-replica-2025-01-15-02-00)"
+    },
+    "NewDBIdentifier": {
+      "type": "String",
+      "default": "dr-restored-db",
+      "description": "Name for the restored database instance"
+    }
+  },
+  "mainSteps": [
+    {
+      "name": "RestoreDBFromSnapshot",
+      "action": "aws:executeAwsApi",
+      "inputs": {
+        "Service": "rds",
+        "Api": "RestoreDBInstanceFromDBSnapshot",
+        "DBSnapshotIdentifier": "{{ SnapshotIdentifier }}",
+        "DBInstanceIdentifier": "{{ NewDBIdentifier }}",
+        "DBInstanceClass": "db.t3.micro",
+        "MultiAZ": false,
+        "PubliclyAccessible": false
+      }
+    },
+    {
+      "name": "WaitForDBAvailable",
+      "action": "aws:waitForAwsResourceProperty",
+      "inputs": {
+        "Service": "rds",
+        "Api": "DescribeDBInstances",
+        "DBInstanceIdentifier": "{{ NewDBIdentifier }}",
+        "PropertySelector": "$.DBInstances[0].DBInstanceStatus",
+        "DesiredValues": ["available"]
+      },
+      "timeoutSeconds": 1800
+    },
+    {
+      "name": "NotifyFailoverComplete",
+      "action": "aws:executeAwsApi",
+      "inputs": {
+        "Service": "sns",
+        "Api": "Publish",
+        "TopicArn": "YOUR_SNS_TOPIC_ARN",
+        "Subject": "DR Failover Complete",
+        "Message": "Database {{ NewDBIdentifier }} has been restored successfully in us-west-2 and is now available."
+      }
+    }
+  ]
+}
