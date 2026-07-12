@@ -138,6 +138,7 @@ This project demonstrates practical implementation of the following AWS concepts
 
 - 💼 **LinkedIn:** https://www.linkedin.com/in/khushi-nandwani/
 - 💻 **GitHub:** https://github.com/Knandwani07
+- 📬 **Substack:** https://substack.com/@knandwani07
 - ✍️ **Dev Community:** https://dev.to/khushi_nandwani07
 - 📝 **Medium:** https://medium.com/@khushinandwanii
 - 🌐 **Portfolio:** https://main.d1n4wt6uo5bfx6.amplifyapp.com/
